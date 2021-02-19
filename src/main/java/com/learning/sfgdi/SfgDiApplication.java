@@ -1,6 +1,9 @@
 package com.learning.sfgdi;
 
+import com.learning.sfgdi.controllers.ConstructorInjectedController;
 import com.learning.sfgdi.controllers.MyController;
+import com.learning.sfgdi.controllers.PropertyInjectedController;
+import com.learning.sfgdi.controllers.SetterInjectedController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -16,6 +19,18 @@ public class SfgDiApplication {
 		String greetings = myController.sayHello();
 
 		System.out.println(greetings);
+
+		System.out.println("------------ Property");
+		final PropertyInjectedController propertyInjectedController = (PropertyInjectedController) ctx.getBean("propertyInjectedController");
+		System.out.println(propertyInjectedController.getGreeting());
+
+		System.out.println("------------ Setter");
+		final SetterInjectedController setterInjectedController = (SetterInjectedController) ctx.getBean("setterInjectedController");
+		System.out.println(setterInjectedController.getGreeting());
+
+		System.out.println("------------ Constructor");
+		final ConstructorInjectedController constructorInjectedController = (ConstructorInjectedController) ctx.getBean("constructorInjectedController");
+		System.out.println(constructorInjectedController.getGreeting());
 	}
 
 }
