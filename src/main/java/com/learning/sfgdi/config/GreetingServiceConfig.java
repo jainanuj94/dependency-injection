@@ -1,6 +1,8 @@
 package com.learning.sfgdi.config;
 
 import com.learning.sfgdi.controllers.PropertyInjectedController;
+import com.learning.sfgdi.repositories.EnglishGreetingRepository;
+import com.learning.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import com.learning.sfgdi.services.ConstructorGreetingServiceImpl;
 import com.learning.sfgdi.services.I18nEnglishGreetingService;
 import com.learning.sfgdi.services.PrimaryGreetingService;
@@ -31,9 +33,14 @@ public class GreetingServiceConfig {
     }
 
     @Bean
+    EnglishGreetingRepository englishGreetingRepository(){
+        return new EnglishGreetingRepositoryImpl();
+    }
+
+    @Bean
     @Profile("EN")
-    I18nEnglishGreetingService i18nService(){
-        return new I18nEnglishGreetingService();
+    I18nEnglishGreetingService i18nService(EnglishGreetingRepository englishGreetingRepository){
+        return new I18nEnglishGreetingService(englishGreetingRepository);
     }
 
     @Bean("i18nService")
