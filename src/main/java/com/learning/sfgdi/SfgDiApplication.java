@@ -7,9 +7,10 @@ import com.learning.sfgdi.controllers.PropertyInjectedController;
 import com.learning.sfgdi.controllers.SetterInjectedController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
+@ComponentScan(basePackages = {"com.learning.sfgdi", "com.learning.spanish"})
 @SpringBootApplication
 public class SfgDiApplication {
 

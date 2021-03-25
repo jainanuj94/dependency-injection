@@ -1,5 +1,6 @@
-package com.learning.sfgdi.services;
+package com.learning.spanish;
 
+import com.learning.sfgdi.services.GreetingService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
