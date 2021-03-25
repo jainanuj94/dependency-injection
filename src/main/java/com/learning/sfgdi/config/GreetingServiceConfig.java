@@ -1,5 +1,8 @@
 package com.learning.sfgdi.config;
 
+import com.learning.pets.DogPetService;
+import com.learning.pets.PetService;
+import com.learning.pets.PetServiceFactory;
 import com.learning.sfgdi.controllers.PropertyInjectedController;
 import com.learning.sfgdi.repositories.EnglishGreetingRepository;
 import com.learning.sfgdi.repositories.EnglishGreetingRepositoryImpl;
@@ -47,5 +50,20 @@ public class GreetingServiceConfig {
     @Profile({"ES", "default"})
     I18nSpanishService i18nSpanishService(){
         return new I18nSpanishService();
+    }
+
+    @Bean
+    PetServiceFactory petServiceFactory(){
+        return new PetServiceFactory();
+    }
+
+    @Bean
+    PetService dogPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("dog");
+    }
+
+    @Bean
+    PetService catPetService(PetServiceFactory petServiceFactory){
+        return petServiceFactory.getPetService("cat");
     }
 }
