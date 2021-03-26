@@ -1,6 +1,7 @@
 package com.learning.sfgdi;
 
 import com.learning.sfgdi.config.SfgConfiguration;
+import com.learning.sfgdi.config.SfgConstructorConfig;
 import com.learning.sfgdi.controllers.ConstructorInjectedController;
 import com.learning.sfgdi.controllers.I18nController;
 import com.learning.sfgdi.controllers.MyController;
@@ -61,6 +62,12 @@ public class SfgDiApplication {
 		System.out.println(sfgConfiguration.getUsername());
 		System.out.println(sfgConfiguration.getPassword());
 		System.out.println(sfgConfiguration.getJdbcUrl());
+
+		System.out.println("------------- Config Constructor Bean------------------");
+		SfgConstructorConfig sfgConstructorConfig = ctx.getBean(SfgConstructorConfig.class);
+		System.out.println(sfgConstructorConfig.getUsername());
+		System.out.println(sfgConstructorConfig.getPassword());
+		System.out.println(sfgConstructorConfig.getJdbcUrl());
 	}
 
 }
