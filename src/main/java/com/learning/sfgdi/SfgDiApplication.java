@@ -5,6 +5,7 @@ import com.learning.sfgdi.controllers.I18nController;
 import com.learning.sfgdi.controllers.MyController;
 import com.learning.sfgdi.controllers.PropertyInjectedController;
 import com.learning.sfgdi.controllers.SetterInjectedController;
+import com.learning.sfgdi.datasource.FakeDataSource;
 import com.learning.sfgdi.services.PrototypeBean;
 import com.learning.sfgdi.services.SingletonBean;
 import org.springframework.boot.SpringApplication;
@@ -48,6 +49,11 @@ public class SfgDiApplication {
 		System.out.println(prototypeBean1.getMyScope());
 		PrototypeBean prototypeBean2 = ctx.getBean(PrototypeBean.class);
 		System.out.println(prototypeBean2.getMyScope());
+
+		FakeDataSource fakeDataSource = ctx.getBean(FakeDataSource.class);
+		System.out.println(fakeDataSource.getUsername());
+		System.out.println(fakeDataSource.getPassword());
+		System.out.println(fakeDataSource.getJdbcUrl());
 	}
 
 }

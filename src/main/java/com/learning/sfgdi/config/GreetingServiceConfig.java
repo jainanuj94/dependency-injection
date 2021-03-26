@@ -1,9 +1,8 @@
 package com.learning.sfgdi.config;
 
-import com.learning.pets.DogPetService;
 import com.learning.pets.PetService;
 import com.learning.pets.PetServiceFactory;
-import com.learning.sfgdi.controllers.PropertyInjectedController;
+import com.learning.sfgdi.datasource.FakeDataSource;
 import com.learning.sfgdi.repositories.EnglishGreetingRepository;
 import com.learning.sfgdi.repositories.EnglishGreetingRepositoryImpl;
 import com.learning.sfgdi.services.ConstructorGreetingServiceImpl;
@@ -11,15 +10,31 @@ import com.learning.sfgdi.services.I18nEnglishGreetingService;
 import com.learning.sfgdi.services.PrimaryGreetingService;
 import com.learning.sfgdi.services.PropertyInjectedGreetingService;
 import com.learning.spanish.I18nSpanishService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 
+@PropertySource("classpath:datasource.properties")
 @ImportResource("classpath:sfgdi-config.xml")
 @Configuration
 public class GreetingServiceConfig {
+
+    @Bean
+    FakeDataSource fakeDataSource(@Value("${guru.username}") String username,
+                                  @Value("${guru.password}") String password,
+                                  @Value("${guru.jdbcUrl}") String jdbcUrl){
+        FakeDataSource fakeDataSource = new FakeDataSource();
+
+        fakeDataSource.setUsername(username);
+        fakeDataSource.setPassword(password);
+        fakeDataSource.setJdbcUrl(jdbcUrl);
+
+        return fakeDataSource;
+    }
 
 //    @Bean
     ConstructorGreetingServiceImpl constructorGreetingServiceImpl(){
